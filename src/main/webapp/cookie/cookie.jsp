@@ -9,7 +9,7 @@
 <body>
 	<%
 	Cookie cookie = new Cookie("appleCookie","apple");
-	cookie.setMaxAge(60*1);
+	cookie.setMaxAge(0);
 	cookie.setValue("tea");
 	response.addCookie(cookie);
 	
