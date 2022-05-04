@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
+<body> 
 		<jsp:useBean class="org.bit.conan.Members" id="member" scope="application"/>
 		<jsp:setProperty property="*" name="member"/>
 	<table border="1">
