@@ -4,14 +4,30 @@ public class BookBean {
 	private String title;
 	private String author;
 	private String publisher;
+	private int price;
+	private int bookid;
 	
+	public int getBookid() {
+		return bookid;
+	}
+	public void setBookid(int bookid) {
+		this.bookid = bookid;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
 	public BookBean() {
 		
 	}
-	public BookBean(String title, String author, String publisher) {
-		setAuthor(author);
+	public BookBean(int bookid, String title, String publisher,int price) {
+//		setAuthor(author);
 		setPublisher(publisher);
 		setTitle(title);
+		setPrice(price);
+		setBookid(bookid);
 	}
 
 	public String getTitle() {

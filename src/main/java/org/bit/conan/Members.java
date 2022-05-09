@@ -3,15 +3,24 @@ package org.bit.conan;
 public class Members {
 	private String userId;
 	private String userPwd;
-	private String name;
+	private String userName;
 	private String address;
 	private String email;
+	private String phone;
+	
+	
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 	private java.util.Date regDate;
 	
 	
 	public Members() {
 		this.userId = "";
-		this.name = "";
+		this.userName = "";
 		this.email="";
 		this.userPwd="";
 	}
@@ -27,11 +36,12 @@ public class Members {
 	public void setUserPwd(String userPwd) {
 		this.userPwd = userPwd;
 	}
-	public String getName() {
-		return name;
+	
+	public String getUserName() {
+		return userName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	public String getAddress() {
 		return address;
