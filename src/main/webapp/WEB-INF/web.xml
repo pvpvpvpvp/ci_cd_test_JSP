@@ -10,6 +10,15 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   
+  <servlet>
+  	<servlet-name>test</servlet-name>
+  	<servlet-class>com.bit.www.ServletTest</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>test</servlet-name>
+  	<url-pattern>/t</url-pattern>
+  </servlet-mapping>
+  
   <resource-ref>
   	<description>Oracle DataSorce example</description>
   	<res-ref-name>jdbc/myoracle</res-ref-name>

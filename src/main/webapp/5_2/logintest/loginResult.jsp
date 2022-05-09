@@ -10,6 +10,7 @@
 	
 	<%
 	try{
+		session.
 		String userId = session.getAttribute("userId").toString();
 		out.print(userId+"님 안녕하세요!");%>
 			<br/><a href="updateFrm.jsp">회원정보 수정</a><p>
