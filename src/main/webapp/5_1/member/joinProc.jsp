@@ -1,4 +1,4 @@
-<%@page import="org.bit.conan.Members"%>
+<%@page import="org.bit.conan.MembersDTO"%>
 <%@page import="java.util.*"%>
 <%@page import="org.bit.conan.BookBean"%>
 <%@page import="java.nio.file.ReadOnlyFileSystemException"%>
@@ -13,7 +13,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:useBean class="org.bit.conan.Members" id ="member">
+	<jsp:useBean class="org.bit.conan.MembersDTO" id ="member">
 		<jsp:setProperty property="*" name="member"/>
 			<table border="1">
 			<caption>사용자가 입력한 데이터</caption>
@@ -40,28 +40,28 @@
 	<c:catch var="e">
 		<%
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-		String url = "jdbc:oracle:thin:@localhost:1521:xe";
-	    String id = "scott";
-	    String pass = "tiger";
-	 	// 3. 오라클 서버 접속 객체 생성
-	    Connection con = DriverManager.getConnection(url, id, pass);
-	    // 4. sql 쿼리문을 실행하기 위한 객체 생성
-	    String strInsert = "INSERT INTO member(user_id,user_pwd,address,email,phone,user_name)\r\n" +
-                    " VALUES(?,?,?,?,?,?)";
-	    PreparedStatement pstmt = con.prepareStatement(strInsert);
-	    pstmt.setString(1, request.getParameter("userId"));
-	    pstmt.setString(2, request.getParameter("userPwd"));
-	    pstmt.setString(3, request.getParameter("address"));
-	    pstmt.setString(4, request.getParameter("email"));
-	    pstmt.setString(5, request.getParameter("phone"));
-	    pstmt.setString(6, request.getParameter("userName"));
-	    int cnt = pstmt.executeUpdate();
-	    String sql = "SELECT * FROM MEMBER WHERE user_id='"+request.getParameter("userId")+"'";
-	    pstmt = con.prepareStatement(sql);
-		ResultSet rs = pstmt.executeQuery();
-		Members m = new Members();
-		String date ="";
-		while(rs.next()){
+				String url = "jdbc:oracle:thin:@localhost:1521:xe";
+			    String id = "scott";
+			    String pass = "tiger";
+			 	// 3. 오라클 서버 접속 객체 생성
+			    Connection con = DriverManager.getConnection(url, id, pass);
+			    // 4. sql 쿼리문을 실행하기 위한 객체 생성
+			    String strInsert = "INSERT INTO member(user_id,user_pwd,address,email,phone,user_name)\r\n" +
+				                    " VALUES(?,?,?,?,?,?)";
+			    PreparedStatement pstmt = con.prepareStatement(strInsert);
+			    pstmt.setString(1, request.getParameter("userId"));
+			    pstmt.setString(2, request.getParameter("userPwd"));
+			    pstmt.setString(3, request.getParameter("address"));
+			    pstmt.setString(4, request.getParameter("email"));
+			    pstmt.setString(5, request.getParameter("phone"));
+			    pstmt.setString(6, request.getParameter("userName"));
+			    int cnt = pstmt.executeUpdate();
+			    String sql = "SELECT * FROM MEMBER WHERE user_id='"+request.getParameter("userId")+"'";
+			    pstmt = con.prepareStatement(sql);
+				ResultSet rs = pstmt.executeQuery();
+				MembersDTO m = new MembersDTO();
+				String date ="";
+				while(rs.next()){
 			m.setUserId(rs.getString(2));
 			m.setUserPwd(rs.getString(3));
 			m.setAddress(rs.getString(4));
@@ -69,10 +69,10 @@
 			date=rs.getString(6);
 			m.setPhone(rs.getString(7));
 			m.setUserName(rs.getString(8));
-		}
-		request.setAttribute("date", date);
-		request.setAttribute("m", m);
-	    %>
+				}
+				request.setAttribute("date", date);
+				request.setAttribute("m", m);
+		%>
 	    <table border="1">
 			<caption>사용자가 입력한 데이터</caption>
 			  <tr>

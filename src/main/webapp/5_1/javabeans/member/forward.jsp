@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:useBean class="org.bit.conan.Members" id="member" scope="application"/>
+	<jsp:useBean class="org.bit.conan.MembersDTO" id="member" scope="application"/>
 	<jsp:setProperty property="*" name="member"/>
 	<jsp:getProperty property="name" name="member"/>
 	(<jsp:getProperty property="userId" name="member"/>)님 안녕!

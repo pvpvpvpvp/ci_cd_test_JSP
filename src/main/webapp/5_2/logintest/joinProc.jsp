@@ -1,5 +1,5 @@
-<%@page import="org.bit.conan.Members"%>
-<%@ page import="java.sql.*,javax.sql.*, javax.naming.*" %>
+<%@page import="org.bit.conan.MembersDTO"%>
+<%@ page import="java.sql.*,javax.sql.*,javax.naming.*" %>
 <%@page import="java.util.*"%>
 <%@page import="org.bit.conan.BookBean"%>
 <%@page import="java.nio.file.ReadOnlyFileSystemException"%>
@@ -14,7 +14,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:useBean class="org.bit.conan.Members" id ="member">
+	<jsp:useBean class="org.bit.conan.MembersDTO" id ="member">
 		<jsp:setProperty property="*" name="member"/>
 			<table border="1">
 			<caption>사용자가 입력한 데이터</caption>

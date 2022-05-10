@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="org.bit.conan.Members"%>
+<%@page import="org.bit.conan.MembersDTO"%>
 <%@page import="java.util.*"%>
 <%@page import="java.nio.file.ReadOnlyFileSystemException"%>
 <%@page import="java.sql.*"%>

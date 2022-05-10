@@ -1,28 +1,25 @@
-package com.servlet.www;
+package com.servlet.www.http;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class importinit
+ * Servlet implementation class TestHttp
  */
-@WebServlet(urlPatterns = {"/initP"},
-initParams = {@WebInitParam(name="userId", value = "aaaa"),
-		@WebInitParam(name="userPwd", value = "9999")})
-public class importinit extends HttpServlet {
+@WebServlet("/TestHttp")
+public class TestHttp extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public importinit() {
+    public TestHttp() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,14 +28,15 @@ public class importinit extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("doGet 호출");
+		// TODO Auto-generated method stub
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		out.print("<h1>init P</h1>");
-		String userId = getInitParameter("userId");
-		String userPwd = getInitParameter("userPwd");
-		out.print("userId : "+userId+"<br/>");
-		out.print("userPwd : "+userPwd);
+		out.print("<h1>로그인 폼</h1>");
+		out.print("<form action='HttpServlet' method='POST'> "
+				+ "네이버 <input type='radio' name='site' value='naver'><br/>"
+				+ "구글 	<input type='radio' name='site' value='google'><br/>"
+				+ "	<input type='submit' name='로그인'>"
+				+ " </form>");
 		out.close();
 	}
 

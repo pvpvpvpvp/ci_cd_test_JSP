@@ -1,4 +1,4 @@
-<%@page import="org.bit.conan.Members"%>
+<%@page import="org.bit.conan.MembersDTO"%>
 <%@page import="java.util.*"%>
 <%@page import="org.bit.conan.BookBean"%>
 <%@page import="java.nio.file.ReadOnlyFileSystemException"%>
@@ -14,30 +14,30 @@
 </head>
 <body>
 	<%
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-		String url = "jdbc:oracle:thin:@localhost:1521:xe";
-	    String id = "scott";
-	    String pass = "tiger";
-	 	// 3. 오라클 서버 접속 객체 생성
-	    Connection con = DriverManager.getConnection(url, id, pass);
-	    PreparedStatement pstmt;
-	    String sql = "SELECT * FROM MEMBER WHERE user_id='1'";
-	    pstmt = con.prepareStatement(sql);
-		ResultSet rs = pstmt.executeQuery();
-		Members m = new Members();
-		String date ="";
-		while(rs.next()){
-			m.setUserId(rs.getString(2));
-			m.setUserPwd(rs.getString(3));
-			m.setAddress(rs.getString(4));
-			m.setEmail(rs.getString(5));
-			date=rs.getString(6);
-			m.setPhone(rs.getString(7));
-			m.setUserName(rs.getString(8));
-		}
-		request.setAttribute("date", date);
-		request.setAttribute("m", m);
-	    %>
+	Class.forName("oracle.jdbc.driver.OracleDriver");
+			String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		    String id = "scott";
+		    String pass = "tiger";
+		 	// 3. 오라클 서버 접속 객체 생성
+		    Connection con = DriverManager.getConnection(url, id, pass);
+		    PreparedStatement pstmt;
+		    String sql = "SELECT * FROM MEMBER WHERE user_id='1'";
+		    pstmt = con.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			MembersDTO m = new MembersDTO();
+			String date ="";
+			while(rs.next()){
+		m.setUserId(rs.getString(2));
+		m.setUserPwd(rs.getString(3));
+		m.setAddress(rs.getString(4));
+		m.setEmail(rs.getString(5));
+		date=rs.getString(6);
+		m.setPhone(rs.getString(7));
+		m.setUserName(rs.getString(8));
+			}
+			request.setAttribute("date", date);
+			request.setAttribute("m", m);
+	%>
 	    <table border="1">
 			<caption>데이터 수정 폼</caption>
 			<form action="./updateProc.jsp">

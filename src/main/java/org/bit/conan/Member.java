@@ -1,6 +1,6 @@
 package org.bit.conan;
 
-public class Members {
+public class Member {
 	private String userId;
 	private String userPwd;
 	private String userName;
@@ -18,7 +18,7 @@ public class Members {
 	private java.util.Date regDate;
 	
 	
-	public Members() {
+	public Member() {
 		this.userId = "";
 		this.userName = "";
 		this.email="";

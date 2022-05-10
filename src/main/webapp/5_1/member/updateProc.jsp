@@ -1,4 +1,4 @@
-<%@page import="org.bit.conan.Members"%>
+<%@page import="org.bit.conan.MembersDTO"%>
 <%@page import="java.util.*"%>
 <%@page import="org.bit.conan.BookBean"%>
 <%@page import="java.nio.file.ReadOnlyFileSystemException"%>
@@ -13,7 +13,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:useBean class="org.bit.conan.Members" id ="member">
+	<jsp:useBean class="org.bit.conan.MembersDTO" id ="member">
 		<jsp:setProperty property="*" name="member"/>
 			<table border="1">
 			<caption>사용자가 입력한 데이터</caption>
@@ -39,48 +39,48 @@
 			</jsp:useBean>
 			
 			<%
-		Class.forName("oracle.jdbc.driver.OracleDriver");
-		String url = "jdbc:oracle:thin:@localhost:1521:xe";
-	    String id = "scott";
-	    String pass = "tiger";
-	 	// 3. 오라클 서버 접속 객체 생성
-	    Connection con = DriverManager.getConnection(url, id, pass);
-	    
-	    
-	    /*업데이트 적기!*/
-	    String strUpdate = "UPDATE MEMBER SET "+
-	    	" user_id =?, user_pwd=?, user_name=?, phone=?,"+
-	    	" address=?, email=?"+
-	    	" WHERE user_id='1'";
-	    PreparedStatement pstmt = con.prepareStatement(strUpdate);
-	    
-	    pstmt.setString(1, request.getParameter("userId"));
-	    pstmt.setString(2, request.getParameter("userPwd"));
-	    pstmt.setString(5, request.getParameter("address"));
-	    pstmt.setString(6, request.getParameter("email"));
-	    pstmt.setString(4, request.getParameter("phone"));
-	    pstmt.setString(3, request.getParameter("userName"));
-	    int cnt = pstmt.executeUpdate();
-	    
-	    
-	    
-	    String sql = "SELECT * FROM MEMBER WHERE user_id='1'";
-	    pstmt = con.prepareStatement(sql);
-		ResultSet rs = pstmt.executeQuery();
-		Members m = new Members();
-		String date ="";
-		while(rs.next()){
-			m.setUserId(rs.getString(2));
-			m.setUserPwd(rs.getString(3));
-			m.setAddress(rs.getString(4));
-			m.setEmail(rs.getString(5));
-			date=rs.getString(6);
-			m.setPhone(rs.getString(7));
-			m.setUserName(rs.getString(8));
-		}
-		request.setAttribute("date", date);
-		request.setAttribute("m", m);
-	    %>
+						Class.forName("oracle.jdbc.driver.OracleDriver");
+																String url = "jdbc:oracle:thin:@localhost:1521:xe";
+															    String id = "scott";
+															    String pass = "tiger";
+															 	// 3. 오라클 서버 접속 객체 생성
+															    Connection con = DriverManager.getConnection(url, id, pass);
+															    
+															    
+															    /*업데이트 적기!*/
+															    String strUpdate = "UPDATE MEMBER SET "+
+															    	" user_id =?, user_pwd=?, user_name=?, phone=?,"+
+															    	" address=?, email=?"+
+															    	" WHERE user_id='1'";
+															    PreparedStatement pstmt = con.prepareStatement(strUpdate);
+															    
+															    pstmt.setString(1, request.getParameter("userId"));
+															    pstmt.setString(2, request.getParameter("userPwd"));
+															    pstmt.setString(5, request.getParameter("address"));
+															    pstmt.setString(6, request.getParameter("email"));
+															    pstmt.setString(4, request.getParameter("phone"));
+															    pstmt.setString(3, request.getParameter("userName"));
+															    int cnt = pstmt.executeUpdate();
+															    
+															    
+															    
+															    String sql = "SELECT * FROM MEMBER WHERE user_id='1'";
+															    pstmt = con.prepareStatement(sql);
+																ResultSet rs = pstmt.executeQuery();
+																MembersDTO m = new MembersDTO();
+																String date ="";
+																while(rs.next()){
+															m.setUserId(rs.getString(2));
+															m.setUserPwd(rs.getString(3));
+															m.setAddress(rs.getString(4));
+															m.setEmail(rs.getString(5));
+															date=rs.getString(6);
+															m.setPhone(rs.getString(7));
+															m.setUserName(rs.getString(8));
+																}
+																request.setAttribute("date", date);
+																request.setAttribute("m", m);
+						%>
 	    <table border="1">
 			<caption>테이블에서 다시 읽어온 데이터</caption>
 			<form action="./updateProc.jsp">

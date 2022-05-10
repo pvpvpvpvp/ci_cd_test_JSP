@@ -1,7 +1,7 @@
-<%@page import="org.bit.conan.Members"%>
+<%@page import="org.bit.conan.MembersDTO"%>
 <%@page import="java.util.*"%>
 <%@page import="java.nio.file.ReadOnlyFileSystemException"%>
-<%@ page import="java.sql.*,javax.sql.*, javax.naming.*" %>
+<%@ page import="java.sql.*,javax.sql.*,javax.naming.*" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@  taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -13,28 +13,30 @@
 </head>
 <body>
 	<%
-		InitialContext ic = new InitialContext();
-		DataSource ds =(DataSource) ic.lookup("java:comp/env/jdbc/myoracle");
-		Connection conn = ds.getConnection();
-	    PreparedStatement pstmt;
-	    String userid = session.getAttribute("userId").toString();
-	    String sql = "SELECT * FROM MEMBER WHERE user_id='"+userid+"'";
-	    pstmt = conn.prepareStatement(sql);
-		ResultSet rs = pstmt.executeQuery();
-		Members m = new Members();
-		String date ="";
-		while(rs.next()){
-			m.setUserId(rs.getString(2));
-			m.setUserPwd(rs.getString(3));
-			m.setAddress(rs.getString(4));
-			m.setEmail(rs.getString(5));
-			date=rs.getString(6);
-			m.setPhone(rs.getString(7));
-			m.setUserName(rs.getString(8));
-		}
-		request.setAttribute("date", date);
-		request.setAttribute("m", m);
-	    %>
+	p
+
+			InitialContext ic = new InitialContext();
+			DataSource ds =(DataSource) ic.lookup("java:comp/env/jdbc/myoracle");
+			Connection conn = ds.getConnection();
+		    PreparedStatement pstmt;
+		    String userid = session.getAttribute("userId").toString();
+		    String sql = "SELECT * FROM MEMBER WHERE user_id='"+userid+"'";
+		    pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			MembersDTO m = new MembersDTO();
+			String date ="";
+			while(rs.next()){
+		m.setUserId(rs.getString(2));
+		m.setUserPwd(rs.getString(3));
+		m.setAddress(rs.getString(4));
+		m.setEmail(rs.getString(5));
+		date=rs.getString(6);
+		m.setPhone(rs.getString(7));
+		m.setUserName(rs.getString(8));
+			}
+			request.setAttribute("date", date);
+			request.setAttribute("m", m);
+	%>
 	    <table border="1">
 			<caption>데이터 수정 폼</caption>
 			<form action="./updateProc.jsp">

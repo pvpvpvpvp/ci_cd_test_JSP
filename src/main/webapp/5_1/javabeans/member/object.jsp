@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:useBean class="org.bit.conan.Members" id="member" scope="application"/>
+	<jsp:useBean class="org.bit.conan.MembersDTO" id="member" scope="application"/>
 	<jsp:setProperty property="name" name="member" value="코난"/>
 	<jsp:setProperty property="userId" name="member" value="conan"/>
 	<jsp:forward page="forward.jsp"/>
